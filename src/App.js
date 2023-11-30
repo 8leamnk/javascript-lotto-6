@@ -1,10 +1,12 @@
 import Purchase from './domain/Purchase.js';
+import Issued from './domain/Issued.js';
 import Lotto from './domain/Lotto.js';
+import Bonus from './domain/Bonus.js';
+import WinningDetails from './domain/WinningDetails.js';
+import Profit from './domain/Profit.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import Util from './util/Util.js';
-import Bonus from './domain/Bonus.js';
-import Issued from './domain/Issued.js';
 
 class App {
   async play() {
@@ -12,6 +14,8 @@ class App {
     const issued = new Issued(numberOfPurchase).getIssued();
     const lotto = await this.#executeLotto();
     const bonus = await this.#executeBonus(lotto);
+    const details = new WinningDetails(issued, lotto, bonus).getDetails();
+    const rate = new Profit(details).calculateRate(price);
   }
 
   async #executePurchase() {

@@ -14,10 +14,13 @@ const VALUE = Object.freeze({
     lotto: 6,
     start: 1,
     end: 45,
+    percent: 100,
+    decimalPoint: 1,
   },
 
   unit: {
     bonus: '5-bonus',
+    number: '개',
   },
 });
 

@@ -11,9 +11,9 @@ class Issued {
   #setIssued(numberOfPurchase) {
     for (let i = 0; i < numberOfPurchase; i += 1) {
       const { start, end, lotto } = VALUE.standard;
-      const oneOfLotto = Random.pickUniqueNumbersInRange(start, end, lotto);
+      const numbers = Random.pickUniqueNumbersInRange(start, end, lotto);
 
-      this.#issued(oneOfLotto.sort((a, b) => a - b));
+      this.#issued(numbers.sort((a, b) => a - b));
     }
   }
 
