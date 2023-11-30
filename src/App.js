@@ -1,9 +1,10 @@
+import Purchase from './domain/Purchase.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 
 class App {
   async play() {
-    const price = await this.#executePurchase();
+    const { price, numberOfPurchase } = await this.#executePurchase();
     const lotto = await this.#executeLotto();
     const bonus = await this.#executeBonus();
   }
@@ -11,8 +12,9 @@ class App {
   async #executePurchase() {
     try {
       const answer = await InputView.readPurchase();
+      const purchaseInfo = new Purchase(answer);
 
-      return answer;
+      return purchaseInfo.getPurchaseInfo();
     } catch (error) {
       OutputView.printError(error);
       return this.#executePurchase();

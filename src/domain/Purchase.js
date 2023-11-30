@@ -20,6 +20,16 @@ class Purchase {
       throw new Error(MESSAGE.error.price);
     }
   }
+
+  #getNumberOfPurchase() {
+    return this.#price / VALUE.standard.price;
+  }
+
+  getPurchaseInfo() {
+    const numberOfPurchase = this.#getNumberOfPurchase();
+
+    return { price: this.#price, numberOfPurchase };
+  }
 }
 
 export default Purchase;
