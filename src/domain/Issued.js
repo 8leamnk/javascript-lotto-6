@@ -13,7 +13,7 @@ class Issued {
       const { start, end, lotto } = VALUE.standard;
       const numbers = Random.pickUniqueNumbersInRange(start, end, lotto);
 
-      this.#issued(numbers.sort((a, b) => a - b));
+      this.#issued.push(numbers.sort((a, b) => a - b));
     }
   }
 
