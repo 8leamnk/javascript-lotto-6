@@ -17,4 +17,17 @@ describe('로또 클래스 테스트', () => {
   });
 
   // 아래에 추가 테스트 작성 가능
+  test('로또 번호에 숫자가 아닌 값이 있으면 예외가 발생한다.', () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, NaN]);
+      return lotto;
+    }).toThrow('[ERROR]');
+  });
+
+  test('로또 번호에 1부터 45까지의 숫자가 아닌 값이 있으면 예외가 발생한다.', () => {
+    expect(() => {
+      const lotto = new Lotto([1, 2, 3, 4, 5, 46]);
+      return lotto;
+    }).toThrow('[ERROR]');
+  });
 });
