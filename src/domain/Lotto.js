@@ -1,3 +1,4 @@
+import Util from '../util/Util.js';
 import MESSAGE from '../constants/message.js';
 import VALUE from '../constants/value.js';
 
@@ -12,7 +13,7 @@ class Lotto {
   #validate() {
     this.#numbers.forEach((number) => {
       Lotto.#validateNumber(number);
-      Lotto.#validateRange(number);
+      Util.validateRange(number);
       this.#validateDuplication(number);
     });
 
@@ -23,14 +24,6 @@ class Lotto {
   static #validateNumber(number) {
     if (!Number.isSafeInteger(number)) {
       throw new Error(MESSAGE.error.notNumber);
-    }
-  }
-
-  static #validateRange(number) {
-    const { rangeStart, rangeEnd } = VALUE.standard;
-
-    if (number < rangeStart || number > rangeEnd) {
-      throw new Error(MESSAGE.error.range);
     }
   }
 

@@ -3,12 +3,13 @@ import Lotto from './domain/Lotto.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import Util from './util/Util.js';
+import Bonus from './domain/Bonus.js';
 
 class App {
   async play() {
     const { price, numberOfPurchase } = await this.#executePurchase();
     const lotto = await this.#executeLotto();
-    const bonus = await this.#executeBonus();
+    const bonus = await this.#executeBonus(lotto);
   }
 
   async #executePurchase() {
@@ -36,14 +37,15 @@ class App {
     }
   }
 
-  async #executeBonus() {
+  async #executeBonus(lotto) {
     try {
       const answer = await InputView.readBonus();
+      const bonus = new Bonus(answer, lotto);
 
-      return answer;
+      return bonus;
     } catch (error) {
       OutputView.printError(error);
-      return this.#executeBonus();
+      return this.#executeBonus(lotto);
     }
   }
 }

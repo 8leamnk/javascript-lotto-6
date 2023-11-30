@@ -1,4 +1,5 @@
 import MESSAGE from '../constants/message.js';
+import VALUE from '../constants/value.js';
 
 const Util = {
   validateNumber(answer) {
@@ -6,6 +7,14 @@ const Util = {
 
     if (NOT_NUMBER.test(answer)) {
       throw new Error(MESSAGE.error.notNumber);
+    }
+  },
+
+  validateRange(number) {
+    const { rangeStart, rangeEnd } = VALUE.standard;
+
+    if (number < rangeStart || number > rangeEnd) {
+      throw new Error(MESSAGE.error.range);
     }
   },
 
