@@ -8,6 +8,10 @@ const Util = {
       throw new Error(MESSAGE.error.notNumber);
     }
   },
+
+  convertToArray(answer) {
+    return answer.split(',').map((numberString) => Number(numberString));
+  },
 };
 
 export default Util;

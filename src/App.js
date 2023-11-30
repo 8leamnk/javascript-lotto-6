@@ -1,6 +1,8 @@
 import Purchase from './domain/Purchase.js';
+import Lotto from './domain/Lotto.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
+import Util from './util/Util.js';
 
 class App {
   async play() {
@@ -24,8 +26,10 @@ class App {
   async #executeLotto() {
     try {
       const answer = await InputView.readLotto();
+      const numbers = Util.convertToArray(answer);
+      const lotto = new Lotto(numbers).getLotto();
 
-      return answer;
+      return lotto;
     } catch (error) {
       OutputView.printError(error);
       return this.#executeLotto();
