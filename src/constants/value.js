@@ -10,6 +10,7 @@ const VALUE = Object.freeze({
   standard: {
     winningStart: 3,
     bonus: 5,
+    price: 1000,
   },
 
   unit: {
