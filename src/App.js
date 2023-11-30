@@ -4,10 +4,12 @@ import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import Util from './util/Util.js';
 import Bonus from './domain/Bonus.js';
+import Issued from './domain/Issued.js';
 
 class App {
   async play() {
     const { price, numberOfPurchase } = await this.#executePurchase();
+    const issued = new Issued(numberOfPurchase).getIssued();
     const lotto = await this.#executeLotto();
     const bonus = await this.#executeBonus(lotto);
   }

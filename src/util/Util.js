@@ -11,9 +11,9 @@ const Util = {
   },
 
   validateRange(number) {
-    const { rangeStart, rangeEnd } = VALUE.standard;
+    const { start, end } = VALUE.standard;
 
-    if (number < rangeStart || number > rangeEnd) {
+    if (number < start || number > end) {
       throw new Error(MESSAGE.error.range);
     }
   },

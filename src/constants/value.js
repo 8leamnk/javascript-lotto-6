@@ -12,8 +12,8 @@ const VALUE = Object.freeze({
     bonus: 5,
     price: 1000,
     lotto: 6,
-    rangeStart: 1,
-    rangeEnd: 45,
+    start: 1,
+    end: 45,
   },
 
   unit: {
