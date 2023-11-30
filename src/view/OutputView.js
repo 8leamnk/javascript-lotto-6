@@ -8,7 +8,7 @@ const OutputView = {
   },
 
   printNumberOfPurchase(numberOfPurchase) {
-    Console.print(`${numberOfPurchase}${MESSAGE.output.price}`);
+    Console.print(`\n${numberOfPurchase}${MESSAGE.output.price}`);
   },
 
   printIssued(issued) {
