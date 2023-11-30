@@ -16,7 +16,7 @@ class Purchase {
   }
 
   #validateFormat() {
-    if (this.#price % VALUE.standard.price > 0) {
+    if (this.#price === 0 || this.#price % VALUE.standard.price > 0) {
       throw new Error(MESSAGE.error.price);
     }
   }
