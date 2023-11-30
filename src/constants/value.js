@@ -21,6 +21,7 @@ const VALUE = Object.freeze({
   unit: {
     bonus: '5-bonus',
     number: '개',
+    percent: '%',
   },
 });
 

@@ -12,10 +12,14 @@ class App {
   async play() {
     const { price, numberOfPurchase } = await this.#executePurchase();
     const issued = new Issued(numberOfPurchase).getIssued();
+
+    OutputView.printNumberOfPurchase(numberOfPurchase);
+    OutputView.printIssued(issued);
+
     const lotto = await this.#executeLotto();
     const bonus = await this.#executeBonus(lotto);
-    const details = new WinningDetails(issued, lotto, bonus).getDetails();
-    const rate = new Profit(details).calculateRate(price);
+
+    App.#endGame(price, issued, lotto, bonus);
   }
 
   async #executePurchase() {
@@ -46,13 +50,21 @@ class App {
   async #executeBonus(lotto) {
     try {
       const answer = await InputView.readBonus();
-      const bonus = new Bonus(answer, lotto);
+      const bonus = new Bonus(answer, lotto).getBonus();
 
       return bonus;
     } catch (error) {
       OutputView.printError(error);
       return this.#executeBonus(lotto);
     }
+  }
+
+  static #endGame(price, issued, lotto, bonus) {
+    const details = new WinningDetails(issued, lotto, bonus).getDetails();
+    const rate = new Profit(details).calculateRate(price);
+
+    OutputView.printDetails(details);
+    OutputView.printRate(rate);
   }
 }
 
