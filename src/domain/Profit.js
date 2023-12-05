@@ -1,4 +1,4 @@
-import VALUE from '../constants/value';
+import VALUE from '../constants/value.js';
 
 class Profit {
   static #PERCENT_UNIT = 100;
