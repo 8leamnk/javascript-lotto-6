@@ -2,6 +2,7 @@ import Purchase from './domain/Purchase.js';
 import IssuedLotto from './domain/IssuedLotto.js';
 import Lotto from './domain/Lotto.js';
 import Bonus from './domain/Bonus.js';
+import Compare from './domain/Compare.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import Util from './util/Util.js';
@@ -12,6 +13,7 @@ class App {
     const lotto = App.#executeIssuedLotto(number);
     const winnings = await this.#executeWinnings();
     const bonus = await this.#executeBonus(winnings);
+    const details = App.#executeCompare(lotto, winnings, bonus);
   }
 
   async #executePurchase() {
@@ -55,6 +57,12 @@ class App {
       OutputView.printError(error);
       return this.#executeBonus(winnings);
     }
+  }
+
+  static #executeCompare(lotto, winnings, bonus) {
+    const details = new Compare(lotto, winnings, bonus).getDetails();
+
+    return details;
   }
 }
 
