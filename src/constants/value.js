@@ -1,5 +1,9 @@
 const VALUE = {
-  numberCondition: 6,
+  range: {
+    start: 1,
+    end: 45,
+    length: 6,
+  },
 };
 
 Object.freeze(VALUE);

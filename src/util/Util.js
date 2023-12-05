@@ -1,4 +1,5 @@
 import MESSAGE from '../constants/message.js';
+import VALUE from '../constants/value.js';
 
 const Util = {
   validateNumber(answer) {
@@ -10,10 +11,9 @@ const Util = {
   },
 
   validateRange(number) {
-    const START = 1;
-    const END = 45;
+    const { start, end } = VALUE.range;
 
-    if (number < START || number > END) {
+    if (number < start || number > end) {
       throw new Error(MESSAGE.error.range);
     }
   },

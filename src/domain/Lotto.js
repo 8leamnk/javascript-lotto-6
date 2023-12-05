@@ -22,7 +22,7 @@ class Lotto {
 
   // TODO: 추가 기능 구현
   #validateLength() {
-    if (this.#numbers.length !== VALUE.numberCondition) {
+    if (this.#numbers.length !== VALUE.range.length) {
       throw new Error(MESSAGE.error.length);
     }
   }
@@ -30,7 +30,7 @@ class Lotto {
   #validateDuplication() {
     const numbersSet = new Set([...this.#numbers]);
 
-    if (numbersSet.size !== VALUE.numberCondition) {
+    if (numbersSet.size !== VALUE.range.length) {
       throw new Error(MESSAGE.error.duplication);
     }
   }

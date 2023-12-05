@@ -37,8 +37,8 @@
 
 ## 발행한 로또 번호
 
-- [ ] Random 값 추출은 `Random.pickUniqueNumbersInRange()`를 활용한다.
-- [ ] 로또 번호는 오름차순으로 정렬하여 보여준다.
+- [x] Random 값 추출은 `Random.pickUniqueNumbersInRange()`를 활용한다.
+- [x] 로또 번호는 오름차순으로 정렬하여 보여준다.
 
 ## 당첨 통계 계산 기능
 
