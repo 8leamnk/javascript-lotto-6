@@ -15,13 +15,15 @@ class App {
     const winnings = await this.#executeWinnings();
     const bonus = await this.#executeBonus(winnings);
     const details = App.#executeCompare(lotto, winnings, bonus);
-    const rate = App.#executeRate(details, price);
+    App.#executeRate(details, price);
   }
 
   async #executePurchase() {
     try {
       const answer = await InputView.readPurchase();
       const priceInfo = new Purchase(answer).getPriceInfo();
+
+      OutputView.printNumber(priceInfo.number);
 
       return priceInfo;
     } catch (error) {
@@ -32,6 +34,8 @@ class App {
 
   static #executeIssuedLotto(number) {
     const lotto = new IssuedLotto(number).getIssuedLotto();
+
+    OutputView.printIssuedLotto(lotto);
 
     return lotto;
   }
@@ -64,13 +68,15 @@ class App {
   static #executeCompare(lotto, winnings, bonus) {
     const details = new Compare(lotto, winnings, bonus).getDetails();
 
+    OutputView.printDetails(details);
+
     return details;
   }
 
   static #executeRate(details, price) {
     const rate = new Profit(details).calculateRate(price);
 
-    return rate;
+    OutputView.printRate(rate);
   }
 }
 
