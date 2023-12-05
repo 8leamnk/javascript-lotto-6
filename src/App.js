@@ -3,6 +3,7 @@ import IssuedLotto from './domain/IssuedLotto.js';
 import Lotto from './domain/Lotto.js';
 import Bonus from './domain/Bonus.js';
 import Compare from './domain/Compare.js';
+import Profit from './domain/Profit.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import Util from './util/Util.js';
@@ -14,6 +15,7 @@ class App {
     const winnings = await this.#executeWinnings();
     const bonus = await this.#executeBonus(winnings);
     const details = App.#executeCompare(lotto, winnings, bonus);
+    const rate = App.#executeRate(details, price);
   }
 
   async #executePurchase() {
@@ -63,6 +65,12 @@ class App {
     const details = new Compare(lotto, winnings, bonus).getDetails();
 
     return details;
+  }
+
+  static #executeRate(details, price) {
+    const rate = new Profit(details).calculateRate(price);
+
+    return rate;
   }
 }
 
