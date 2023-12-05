@@ -1,10 +1,13 @@
+import Lotto from './domain/Lotto.js';
 import Purchase from './domain/Purchase.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
+import Util from './util/Util.js';
 
 class App {
   async play() {
     const { price, number } = await this.#executePurchase();
+    const winnings = await this.#executeWinnings();
   }
 
   async #executePurchase() {
@@ -22,8 +25,10 @@ class App {
   async #executeWinnings() {
     try {
       const answer = await InputView.readWinnings();
+      const numbers = Util.convertToNumberArray(answer);
+      const winnings = new Lotto(numbers).getWinnings();
 
-      return '';
+      return winnings;
     } catch (error) {
       OutputView.printError(error);
       return this.#executeWinnings();
