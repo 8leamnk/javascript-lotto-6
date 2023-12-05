@@ -1,14 +1,20 @@
-import InputView from './view/InputView';
+import Purchase from './domain/Purchase.js';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
-  async play() {}
+  async play() {
+    const { price, number } = await this.#executePurchase();
+  }
 
   async #executePurchase() {
     try {
       const answer = await InputView.readPurchase();
+      const priceInfo = new Purchase(answer).getPriceInfo();
 
-      return '';
+      return priceInfo;
     } catch (error) {
+      OutputView.printError(error);
       return this.#executePurchase();
     }
   }
@@ -19,6 +25,7 @@ class App {
 
       return '';
     } catch (error) {
+      OutputView.printError(error);
       return this.#executeWinnings();
     }
   }
@@ -29,6 +36,7 @@ class App {
 
       return '';
     } catch (error) {
+      OutputView.printError(error);
       return this.#executeBonus();
     }
   }

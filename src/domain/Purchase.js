@@ -21,6 +21,17 @@ class Purchase {
       throw new Error(MESSAGE.error.notPurchaseUnit);
     }
   }
+
+  #calculateNumber() {
+    return this.#price / Purchase.#PRICE_UNIT;
+  }
+
+  getPriceInfo() {
+    return {
+      price: this.#price,
+      number: this.#calculateNumber(),
+    };
+  }
 }
 
 export default Purchase;
